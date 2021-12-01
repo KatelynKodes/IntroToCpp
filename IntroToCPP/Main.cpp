@@ -1,9 +1,11 @@
 #include <iostream>
 #include <cstring>
-#include "Entity.h"
+#include "Engine.h"
 
 int main()
 {
-	Entity wompus('w', 1000000, 5, -20);
+	Engine engine = Engine();
+	engine.run();
 	return 0;
 }
+
