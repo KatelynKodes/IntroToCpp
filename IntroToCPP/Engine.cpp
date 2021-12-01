@@ -32,9 +32,10 @@ void Engine::start()
 	m_entities[0] = wompus;
 	m_entities[1] = LittleSkele;
 	m_entities[2] = UnclePhil;
+	m_entityCount = 3;
 
-	m_currFighter1 = m_entities[0];
-	m_currFighter2 = m_entities[1];
+	m_currFighter1 = &m_entities[0];
+	m_currFighter2 = &m_entities[1];
 	m_currFighterIndex = 2;
 
 }
@@ -42,8 +43,25 @@ void Engine::start()
 void Engine::update()
 {
 	//Check death
-	m_currFighter1.attack(m_currFighter2);
-	m_currFighter1.attack(m_currFighter1);
+	if (m_currFighter1 -> getHealth() <= 0 && m_currFighterIndex < m_entityCount)
+	{
+		m_currFighter1 = &m_entities[m_currFighterIndex];
+		m_currFighterIndex++;
+	}
+	if (m_currFighter2->getHealth() <= 0 && m_currFighterIndex < m_entityCount)
+	{
+		m_currFighter2 = &m_entities[m_currFighterIndex];
+		m_currFighterIndex++;
+	}
+
+	if ((m_currFighter1->getHealth() <= 0 || m_currFighter2->getHealth() <= 0) && m_currFighterIndex >= m_entityCount)
+	{
+		m_applicationShouldClose = true;
+		return;
+	}
+
+	m_currFighter1 -> attack(m_currFighter2);
+	m_currFighter1 -> attack(m_currFighter1);
 }
 
 void Engine::end()

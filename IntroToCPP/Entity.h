@@ -12,7 +12,7 @@ public:
     float GetDefPower() { return m_defensePower; }
 
     float TakeDamage(float dmgAmount);
-    float attack(Entity entity);
+    float attack(Entity* entity);
 
 private:
     char m_icon;

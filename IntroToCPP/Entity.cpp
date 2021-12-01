@@ -36,7 +36,7 @@ float Entity::TakeDamage(float dmgAmount)
 	return dmgTaken;
 }
 
-float Entity::attack(Entity entity)
+float Entity::attack(Entity* entity)
 {
-	return entity.TakeDamage(entity.GetAttkPower());
+	return entity -> TakeDamage(GetAttkPower());
 }
