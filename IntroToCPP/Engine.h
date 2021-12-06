@@ -1,13 +1,19 @@
 #pragma once
 #include "Entity.h"
+#include "Scene.h"
 
 class Engine
 {
 public:
 	Engine();
+	~Engine();
 	void run();
 	bool getApplicationShouldClose() { return m_applicationShouldClose; }
 	static void setApplicationShouldClose(bool value) { m_applicationShouldClose = value; }
+
+	static void addScene(Scene* scene);
+	static Scene* getCurrentScene();
+	static void setCurrentScene(int index);
 
 private:
 	void start();
@@ -17,11 +23,7 @@ private:
 
 private:
 	static bool m_applicationShouldClose;
-	Entity m_entities[50];
-	Entity* m_currFighter1;
-	Entity* m_currFighter2;
-
-	int m_currFighterIndex;
-	int m_entityCount;
+	static Scene** m_Scenes;
+	static int m_sceneCount;
 
 };

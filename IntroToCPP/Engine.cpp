@@ -7,8 +7,11 @@ bool Engine::m_applicationShouldClose = false;
 Engine::Engine()
 {
 	m_applicationShouldClose = false;
-	m_entityCount = 0;
-	m_currFighterIndex = 0;
+}
+
+Engine::~Engine()
+{
+	delete[] m_Scenes;
 }
 
 void Engine::run()
@@ -24,20 +27,24 @@ void Engine::run()
 	end();
 }
 
+void Engine::addScene(Scene* scene)
+{
+}
+
+Scene* Engine::getCurrentScene()
+{
+	return nullptr;
+}
+
+void Engine::setCurrentScene(int index)
+{
+}
+
 void Engine::start()
 {
 	Entity wompus = Entity('W', 3, 1, 1);
 	Entity LittleSkele = Entity('S', 2, 1, 0);
 	Entity UnclePhil = Entity('U', 1, 2, 0);
-
-	m_entities[0] = wompus;
-	m_entities[1] = LittleSkele;
-	m_entities[2] = UnclePhil;
-	m_entityCount = 3;
-
-	m_currFighter1 = &m_entities[0];
-	m_currFighter2 = &m_entities[1];
-	m_currFighterIndex = 2;
 
 }
 

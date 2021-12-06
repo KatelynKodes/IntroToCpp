@@ -3,7 +3,10 @@
 class Actor
 {
 public:
-	Actor(char* name) { m_name = name; }
+	Actor() { m_started = false, m_name = '\0'; }
+	Actor(const char* name) { m_name = name; }
+	~Actor();
+	const char* getName() { return m_name; }
 
 	virtual void start() { m_started = true; }
 	virtual void update() {};
@@ -11,6 +14,6 @@ public:
 	virtual void end() {};
 
 private:
-	char* m_name;
+	const char* m_name;
 	bool m_started;
 };
